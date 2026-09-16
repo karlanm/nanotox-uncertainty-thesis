@@ -1,44 +1,45 @@
-# Nanoparticles_Toxicity
-### **🔹 Introduction**
 
-This project explores **nanoparticle toxicity classification** using a dataset containing various nanoparticles and their physicochemical properties. The dataset includes features such as **core size, hydrosize(hydrodynamic size of the NPs), surface charge, surface area, Ec (electric charge), exposure time, e (energy related feature possibly Electron Affinity or Energy Dissipation), dosage, and number of oxygen atoms**. The final column represents toxicity, where **1 indicates toxic** and **0 indicates non-toxic**.
 
----
 
-### **🔹 Methods**
+Readme · MD
+Computational Toxicology: ML Models for Metal-Oxide Nanoparticle Cytotoxicity Prediction
 
-After loading the dataset, **preprocessing** was performed to ensure compatibility with machine learning models.
+Repositorio de reproducibilidad para la tesis de Karla Mosquera (Yachay Tech), "Computational toxicology: Machine learning for predicting NPs cytotoxicity", incluyendo cuantificación de incertidumbre bayesiana.
+Contenido
+Archivo	Descripción
+ML_new_dataset_FIXED.ipynb	Split group-aware, SMOTE post-split, entrenamiento y evaluación de Random Forest / SVM / MLP sobre el subconjunto curado de 483 nanopartículas metal-óxido
+ToxicityModel_Flujo_Python_FIXED.ipynb	Pipeline alternativo que incluye coresize, con análisis de dominio de aplicabilidad (distancia de Mahalanobis)
+Qsar_FIXED.ipynb	Análisis de importancia de variables multi-método (Pearson, Spearman, información mutua, Random Forest, permutación, VIF inverso), incluyendo chequeos de robustez decorrelacionados
+bayes_FIXED.ipynb	Red Neuronal Bayesiana (Pyro/PyTorch): entrenamiento SVI, muestreo genuino del posterior, cuantificación de incertidumbre, calibración, y demostración del pipeline de dos pasos
+Datos necesarios
 
-1️⃣ **One-Hot Encoding** was applied to transform the categorical **nanoparticle (NPs) column** into a numerical format, making it suitable for machine learning. Since One-Hot Encoding produces only **0s and 1s**, these values remained unchanged even after normalization.
+Estos dos archivos deben colocarse en el mismo directorio que los notebooks (no se incluyen en este repositorio por tamaño/licencia de los datos originales — ver "Fuente de datos" abajo):
 
-2️⃣ **A correlation heatmap** was generated to visually assess the linear relationships between all features and the target class (toxicity). This helped identify features with strong positive or negative correlations to toxicity, such as NOxygen,NPs_TiO2, and NPs_ZnO providing early insights into which variables might be influential in predicting nanoparticle toxicity. 
+    dataset_nanotox_datos_originales.xlsx (483 filas, usado por ML_new_dataset_FIXED.ipynb y ToxicityModel_Flujo_Python_FIXED.ipynb)
+    NanoTox__unidas.csv (1,363 filas complete-case, usado por Qsar_FIXED.ipynb y bayes_FIXED.ipynb)
 
-3️⃣ The **target column (toxicity label)** was separated from the feature set, and the dataset was split into **training (80%) and testing (20%) sets**.
+Fuente de datos
 
-4️⃣ **Feature Normalization** was applied to scale all numerical features between **0 and 1**, ensuring models learn effectively without bias toward larger values. The processed data was then converted back into a dataframe.
+Ambos archivos derivan del dataset NanoTox de Subramanian, N. A., & Palaniappan, A. (2021). NanoTox: Development of a Parsimonious In Silico Model for Toxicity Assessment of Metal-Oxide Nanoparticles Using Physicochemical Features. ACS Omega, 6(18), 11729–11739. https://doi.org/10.1021/acsomega.1c00753
+Entorno
 
-5️⃣ A **custom evaluation function** was implemented to compute **accuracy, recall, precision, and F1-score** for performance comparison.
+Todos los notebooks fueron ejecutados de punta a punta ("Restart & Run All") con Python 3.12 y las siguientes librerías principales:
 
-6️⃣ Machine learning models including **XGBoost, SVM, Random Forest, Decision Tree, Logistic Regression, and ANN (Artificial Neural Network)** were trained and evaluated.
+pandas
+numpy
+scikit-learn
+imbalanced-learn
+torch
+pyro-ppl
+statsmodels
+matplotlib
+seaborn
+scipy
 
----
 
-### **🔹 Results and Findings**
+Semilla aleatoria fija (random_state=42 / torch.manual_seed(42)) en todos los pasos estocásticos para reproducibilidad.
 
-The **Model Performance Heatmap** indicates that **no major overfitting** was observed. Most models exhibited **similar Train and Test F1-Scores**, demonstrating good generalization to new data. While **XGBoost and Random Forest showed slight overfitting** (Train ≈ 0.99 vs. Test ≈ 0.96), the gap was minimal and **not concerning**. Other models, such as **Decision Tree, SVM, ANN, and Logistic Regression**, performed well without signs of memorization, suggesting a strong balance between learning and generalization.
+Mosquera, K. (2026). [Computational toxicology: Machine learning for
+predicting NPs cytotoxicity]. Yachay Tech University.
+Código: [DOI DE ZENODO AQUÍ UNA VEZ GENERADO]
 
-The **Confusion Matrix** provided insight into False Negatives (FN), False Positives (FP), True Positives (TP), and True Negatives (TN) for each model. **XGBoost, Random Forest, and ANN performed best**, with **0 or 1 FN cases**, indicating high reliability in detecting toxic nanoparticles. While **Logistic Regression** showed only one FN, its high FP count (32) reduced its reliability for accurate predictions. SVM, in contrast, demonstrated weaker performance, failing to minimize both FN and FP errors compared to other models.
-
-Finally, a **Feature Importance Plot** was generated for tree-based models (**XGBoost, Random Forest, and Decision Tree**), as **SVM and ANN** do not provide direct feature importance scores. This analysis revealed that **Number of Oxygen atoms and Dosage** were the most influential features affecting toxicity. Additionally, models such as Random Forest, XGBoost, and Logistic Regression indicated that the **TiO₂ nanoparticle contributes with toxicity**.
-
----
-
-### **🔹 Conclusion**
-
-The results suggest that **XGBoost, Random Forest, and ANN are the most effective models for nanoparticle toxicity classification** due to their ability to **minimize False Negatives while maintaining high accuracy**. The findings highlight that **dosage and oxygen content** play a crucial role in determining toxicity, making them key factors for future research and regulatory assessments.
-
-## ✉ Contact
-If you have any questions or feedback, feel free to reach out!
-- **LinkedIn:** www.linkedin.com/in/elaheh-p-9918432a6
-
- **If you find this project useful, please ⭐ star the repository!** ⭐
