@@ -43,9 +43,6 @@ Ver `requirements.txt` (o `pyproject.toml` + `uv.lock` si usas `uv`) para versio
 
 Semilla aleatoria fija (`random_state=42` / `torch.manual_seed(42)`) en todos los pasos estocásticos para reproducibilidad.
 
-## Cómo citar
-
-Si usas este código, por favor cita:
 
 ```
 Mosquera, K. (2026). [Computational toxicology: Machine learning for
