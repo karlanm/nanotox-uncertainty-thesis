@@ -48,10 +48,8 @@ Semilla aleatoria fija (`random_state=42` / `torch.manual_seed(42)`) en todos lo
 Si usas este código, por favor cita:
 
 ```
-Mosquera, K. (2026). [Título de la tesis]. Yachay Tech University.
+Mosquera, K. (2026). [Computational toxicology: Machine learning for
+predicting NPs cytotoxicity]. Yachay Tech University.
 Código: [DOI DE ZENODO AQUÍ UNA VEZ GENERADO]
 ```
 
-## Licencia
-
-[Elige una licencia — MIT o CC-BY-4.0 son opciones comunes para código académico]
