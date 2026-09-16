@@ -1,7 +1,3 @@
-
-
-
-Readme · MD
 Computational Toxicology: ML Models for Metal-Oxide Nanoparticle Cytotoxicity Prediction
 
 Repositorio de reproducibilidad para la tesis de Karla Mosquera (Yachay Tech), "Computational toxicology: Machine learning for predicting NPs cytotoxicity", incluyendo cuantificación de incertidumbre bayesiana.
